@@ -14,7 +14,7 @@ protocol XDXRatingBarDelegate: NSObjectProtocol
 }
 
 @IBDesignable
-open class XDXRatingBar: UIView
+public class XDXRatingBar: UIView
 {
     static let imageOfSelectedStars = UIImage(named: "Selected Star")!
     static let imageOfUnselectedStars = UIImage(named: "Unselected Star")!
@@ -45,7 +45,7 @@ open class XDXRatingBar: UIView
         }
     }
     
-    override open func prepareForInterfaceBuilder()
+    override public func prepareForInterfaceBuilder()
     {
         super.prepareForInterfaceBuilder()
         layoutSubviews()
@@ -67,7 +67,7 @@ open class XDXRatingBar: UIView
         addGestureRecognizer(tapGesture)
     }
     
-    override open func layoutSubviews()
+    override public func layoutSubviews()
     {
         super.layoutSubviews()
         
@@ -119,7 +119,7 @@ open class XDXRatingBar: UIView
     }
 }
 
-open class XDXRatingBarManager
+public class XDXRatingBarManager
 {
     open static let shared = XDXRatingBarManager()
     

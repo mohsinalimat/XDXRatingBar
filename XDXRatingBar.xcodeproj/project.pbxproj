@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		57399188208A4A1E00B8C7FD /* XDXRatingBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 57399186208A4A1E00B8C7FD /* XDXRatingBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5739918F208A4A4400B8C7FD /* XDXRatingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739918E208A4A4400B8C7FD /* XDXRatingBar.swift */; };
+		57F04296208A4DF400767E83 /* XDXRatingBar.swift in Headers */ = {isa = PBXBuildFile; fileRef = 5739918E208A4A4400B8C7FD /* XDXRatingBar.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57399188208A4A1E00B8C7FD /* XDXRatingBar.h in Headers */,
+				57F04296208A4DF400767E83 /* XDXRatingBar.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
