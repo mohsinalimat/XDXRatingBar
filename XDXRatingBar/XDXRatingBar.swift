@@ -8,13 +8,12 @@
 
 import UIKit
 
-protocol XDXRatingBarDelegate: NSObjectProtocol
+public protocol XDXRatingBarDelegate: NSObjectProtocol
 {
     func ratingDidChange(_ ratingBar: XDXRatingBar, rating: CGFloat)
 }
 
-@IBDesignable
-public class XDXRatingBar: UIView
+@IBDesignable open class XDXRatingBar: UIView
 {
     static let imageOfSelectedStars = UIImage(named: "Selected Star")!
     static let imageOfUnselectedStars = UIImage(named: "Unselected Star")!
@@ -23,20 +22,20 @@ public class XDXRatingBar: UIView
     private var backgroundRatingView: UIView!
     private var isDrawn = false
     
-    weak var delegate: XDXRatingBarDelegate?
+    public weak var delegate: XDXRatingBarDelegate?
     
-    @IBInspectable var minRating: CGFloat                  = XDXRatingBarManager.shared.minRating               ?? 1
-    @IBInspectable var maxRating: CGFloat                  = XDXRatingBarManager.shared.maxRating               ?? 5
-    @IBInspectable var numberOfStars: Int                  = XDXRatingBarManager.shared.numberOfStars           ?? 5
-    @IBInspectable var animated: Bool                      = XDXRatingBarManager.shared.animated                ?? true
-    @IBInspectable var animationTimeInterval: TimeInterval = XDXRatingBarManager.shared.animationTimeInterval   ?? 0.2
-    @IBInspectable var isDecimalRating: Bool               = XDXRatingBarManager.shared.isDecimalRating         ?? false
-    @IBInspectable var isIndicator: Bool                   = XDXRatingBarManager.shared.isIndicator             ?? false
-    @IBInspectable var starWidthInsetRatio: CGFloat        = XDXRatingBarManager.shared.starWidthInsetRatio     ?? 0.05
-    @IBInspectable var imageForSelectedStars: UIImage      = XDXRatingBarManager.shared.imageForSelectedStars   ?? imageOfSelectedStars
-    @IBInspectable var imageForUnselectedStars: UIImage?   = XDXRatingBarManager.shared.imageForUnselectedStars ?? imageOfUnselectedStars
+    @IBInspectable open var minRating: CGFloat                  = XDXRatingBarManager.shared.minRating               ?? 1
+    @IBInspectable open var maxRating: CGFloat                  = XDXRatingBarManager.shared.maxRating               ?? 5
+    @IBInspectable open var numberOfStars: Int                  = XDXRatingBarManager.shared.numberOfStars           ?? 5
+    @IBInspectable open var animated: Bool                      = XDXRatingBarManager.shared.animated                ?? true
+    @IBInspectable open var animationTimeInterval: TimeInterval = XDXRatingBarManager.shared.animationTimeInterval   ?? 0.2
+    @IBInspectable open var isDecimalRating: Bool               = XDXRatingBarManager.shared.isDecimalRating         ?? false
+    @IBInspectable open var isIndicator: Bool                   = XDXRatingBarManager.shared.isIndicator             ?? false
+    @IBInspectable open var starWidthInsetRatio: CGFloat        = XDXRatingBarManager.shared.starWidthInsetRatio     ?? 0.05
+    @IBInspectable open var imageForSelectedStars: UIImage      = XDXRatingBarManager.shared.imageForSelectedStars   ?? imageOfSelectedStars
+    @IBInspectable open var imageForUnselectedStars: UIImage?   = XDXRatingBarManager.shared.imageForUnselectedStars ?? imageOfUnselectedStars
     
-    @IBInspectable var rating: CGFloat = 1 {
+    @IBInspectable open var rating: CGFloat = 1 {
         didSet {
             if      minRating > rating { rating = minRating }
             else if maxRating < rating { rating = maxRating }
@@ -45,10 +44,22 @@ public class XDXRatingBar: UIView
         }
     }
     
-    override public func prepareForInterfaceBuilder()
+    override open func prepareForInterfaceBuilder()
     {
         super.prepareForInterfaceBuilder()
         layoutSubviews()
+    }
+    
+    override open func layoutSubviews()
+    {
+        super.layoutSubviews()
+        
+        buildView()
+        let timeInterval: TimeInterval = animated ? animationTimeInterval : 0
+        
+        UIView.animate(withDuration: timeInterval) {
+            self.animationRatingChange()
+        }
     }
     
     private func buildView()
@@ -65,18 +76,6 @@ public class XDXRatingBar: UIView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapRatingView))
         tapGesture.numberOfTapsRequired = 1
         addGestureRecognizer(tapGesture)
-    }
-    
-    override public func layoutSubviews()
-    {
-        super.layoutSubviews()
-        
-        buildView()
-        let timeInterval: TimeInterval = animated ? animationTimeInterval : 0
-        
-        UIView.animate(withDuration: timeInterval) {
-            self.animationRatingChange()
-        }
     }
     
     private func animationRatingChange()
@@ -119,7 +118,7 @@ public class XDXRatingBar: UIView
     }
 }
 
-public class XDXRatingBarManager
+open class XDXRatingBarManager
 {
     open static let shared = XDXRatingBarManager()
     
