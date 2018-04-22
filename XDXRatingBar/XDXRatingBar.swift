@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol XDXRatingBarDelegate: NSObjectProtocol
+@objc public protocol XDXRatingBarDelegate: NSObjectProtocol
 {
     func ratingDidChange(_ ratingBar: XDXRatingBar, rating: CGFloat)
 }
@@ -22,7 +22,7 @@ public protocol XDXRatingBarDelegate: NSObjectProtocol
     private var backgroundRatingView: UIView!
     private var isDrawn = false
     
-    public weak var delegate: XDXRatingBarDelegate?
+    @IBOutlet public weak var delegate: XDXRatingBarDelegate?
     
     @IBInspectable open var minRating: CGFloat                  = XDXRatingBarManager.shared.minRating               ?? 1
     @IBInspectable open var maxRating: CGFloat                  = XDXRatingBarManager.shared.maxRating               ?? 5
