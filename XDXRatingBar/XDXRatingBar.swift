@@ -24,16 +24,17 @@ import UIKit
     
     @IBOutlet public weak var delegate: XDXRatingBarDelegate?
     
-    @IBInspectable open var minRating: CGFloat                  = XDXRatingBarManager.shared.minRating               ?? 1
-    @IBInspectable open var maxRating: CGFloat                  = XDXRatingBarManager.shared.maxRating               ?? 5
-    @IBInspectable open var numberOfStars: Int                  = XDXRatingBarManager.shared.numberOfStars           ?? 5
-    @IBInspectable open var animated: Bool                      = XDXRatingBarManager.shared.animated                ?? true
-    @IBInspectable open var animationTimeInterval: TimeInterval = XDXRatingBarManager.shared.animationTimeInterval   ?? 0.2
-    @IBInspectable open var isDecimalRating: Bool               = XDXRatingBarManager.shared.isDecimalRating         ?? false
-    @IBInspectable open var isIndicator: Bool                   = XDXRatingBarManager.shared.isIndicator             ?? false
-    @IBInspectable open var starWidthInsetRatio: CGFloat        = XDXRatingBarManager.shared.starWidthInsetRatio     ?? 0.05
-    @IBInspectable open var imageForSelectedStars: UIImage      = XDXRatingBarManager.shared.imageForSelectedStars   ?? imageOfSelectedStars
-    @IBInspectable open var imageForUnselectedStars: UIImage?   = XDXRatingBarManager.shared.imageForUnselectedStars ?? imageOfUnselectedStars
+    @IBInspectable open var minRating: CGFloat                  = XDXRatingBarManager.shared.minRating                   ?? 1
+    @IBInspectable open var maxRating: CGFloat                  = XDXRatingBarManager.shared.maxRating                   ?? 5
+    @IBInspectable open var numberOfStars: Int                  = XDXRatingBarManager.shared.numberOfStars               ?? 5
+    @IBInspectable open var animated: Bool                      = XDXRatingBarManager.shared.animated                    ?? true
+    @IBInspectable open var animationTimeInterval: TimeInterval = XDXRatingBarManager.shared.animationTimeInterval       ?? 0.2
+    @IBInspectable open var isDecimalRating: Bool               = XDXRatingBarManager.shared.isDecimalRating             ?? false
+    @IBInspectable open var isIndicator: Bool                   = XDXRatingBarManager.shared.isIndicator                 ?? false
+    @IBInspectable open var starWidthInsetRatio: CGFloat        = XDXRatingBarManager.shared.starWidthInsetRatio         ?? 0.05
+    @IBInspectable open var imageForSelectedStars: UIImage      = XDXRatingBarManager.shared.imageForSelectedStars       ?? imageOfSelectedStars
+    @IBInspectable open var imageForUnselectedStars: UIImage    = XDXRatingBarManager.shared.imageForUnselectedStars     ?? imageOfUnselectedStars
+    @IBInspectable open var isDisplayingUnselectedStars: Bool   = XDXRatingBarManager.shared.isDisplayingUnselectedStars ?? true
     
     @IBInspectable open var rating: CGFloat = 1 {
         didSet {
@@ -67,7 +68,7 @@ import UIKit
         if isDrawn { return }
         isDrawn = true
         
-        if let image = imageForUnselectedStars { backgroundRatingView = createRatingView(image: image) }
+        if isDisplayingUnselectedStars { backgroundRatingView = createRatingView(image: imageForUnselectedStars) }
         foregroundRatingView = createRatingView(image: imageForSelectedStars)
         animationRatingChange()
         addSubview(backgroundRatingView)
@@ -132,4 +133,5 @@ open class XDXRatingBarManager
     open var starWidthInsetRatio: CGFloat?
     open var imageForSelectedStars: UIImage?
     open var imageForUnselectedStars: UIImage?
+    open var isDisplayingUnselectedStars: Bool?
 }
