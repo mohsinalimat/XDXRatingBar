@@ -1,6 +1,6 @@
 # XDXRatingBar
 
-![Languages](https://img.shields.io/badge/language-swift%20|%20objective-C-FF69B4.svg?style=plastic)
+![Languages](https://img.shields.io/badge/language-swift%20|%20objc-FF69B4.svg?style=plastic)
 
 ## Table of contents
 * [Introduction](#introduction)
@@ -22,11 +22,12 @@ The GitHub project [XDXRatingBar](https://github.com/6xieapplexia6/XDXRatingBar)
 <br/>
 
 ### <a id="screenshots"></a>Screenshots
-
+![XDXRatingBar](https://github.com/6xieapplexia6/XDXRatingBar/one_star.png)
+![XDXRatingBar](https://github.com/6xieapplexia6/XDXRatingBar/three_stars.png)
 <br/>
 
 ### <a id="installation"></a>Installation
-
+In progress...
 <br/>
 
 ### <a id="tips"></a>Tips
