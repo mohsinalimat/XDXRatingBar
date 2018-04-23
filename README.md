@@ -7,7 +7,7 @@
 * [Screenshots](#screenshots)
 * [Installation](#installation)
 * [Tips](#tips)
-* [Support](#support)
+* [Support XDXRatingBar](#support)
 * [Contact](#contact)
 * [License](#license)
 
@@ -33,7 +33,7 @@ Cocoapods installation will be available in the future.
 
 ### <a id="tips"></a>Tips
 
-#### Variables
+#### XDXRatingBar - Variables
 
 1. The variable "maxRating" should be the multiple of the variable "numberOfStars". In most cases, I'll recommend to set them as the same of each other.
 
@@ -43,7 +43,7 @@ Cocoapods installation will be available in the future.
 
 4. The variable "isIndicator" determines whether users can change rating by tapping XDXRatingBar. However, the rating can still be changed programmatically.
 
-5. The variable "starWidthInsetRatio" sets the gap between star images. The value should be set between 0 ~ 0.5.
+5. The variable "starWidthInsetRatio" sets the gap between star images. The value should be set to 0 ~ 0.5.
 
 6. The variable "isDisplayingUnselectedStars" indicates whether unselected star images should display or not. If it's set to false, the value of "imageForUnselectedStars" will be useless (suggesting to set image to nil).
 
@@ -73,9 +73,47 @@ func configXDXRatingBarGlobally()
 
 Simply copy this piece of code and do a little modification based on what you need in the project's AppDelegate file. So you don't have to override either in coding files or in xib / storyboard files everytime when XDXRatingBar is created. All variables in XDXRatingBarManager are optional, so you are not required to do this in AppDelegate.
 
+#### XDXRatingBarDelegate
+
+If you need to do something when the rating of XDXRatingBar is changed. You can simply confirm the protocol in view-controller or view-cell classes like: 
+
+```swift
+class ViewController: UIViewController, XDXRatingBarDelegate
+```
+
+You can either set delegate programmatically or drag in xib / storyboard files.
+
+First way: 
+```swift
+@IBOutlet weak var ratingBar: XDXRatingBar! {
+    didSet { ratingBar.delegate = self }
+}
+```
+
+OR
+
+Second way:
+```swift
+override func viewDidLoad()
+{
+    super.viewDidLoad()
+        
+    ratingBar.delegate = self
+}
+```
+
+Then do what you want to do in the method "ratingDidChange". You are not required to implement this method (since the method in protocol is optional) even when you confirm protocol in the classes.
+
+```swift
+func ratingDidChange(_ ratingBar: XDXRatingBar, rating: CGFloat)
+{
+    print("ratingDidChange rating: \(rating)")
+}
+```
+
 <br/>
 
-### <a id="support"></a>Support this repo
+### <a id="support"></a>Support XDXRatingBar
 * [**★Star**](#) this repo 
 <br/>
 
