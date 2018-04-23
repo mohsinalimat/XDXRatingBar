@@ -27,10 +27,13 @@ The GitHub project [XDXRatingBar](https://github.com/6xieapplexia6/XDXRatingBar)
 <br/>
 
 ### <a id="installation"></a>Installation
-In progress...
+The easiest way to install this API on an iOS project is to copy the file XDXRatingBar.swift into the Xcode project folder.
+Cocoapods installation will be available in the future.
 <br/>
 
 ### <a id="tips"></a>Tips
+
+#### Variables
 
 1. The variable "maxRating" should be the multiple of the variable "numberOfStars". In most cases, I'll recommend to set them as the same of each other.
 
@@ -43,6 +46,32 @@ In progress...
 5. The variable "starWidthInsetRatio" sets the gap between star images. The value should be set between 0 ~ 0.5.
 
 6. The variable "isDisplayingUnselectedStars" indicates whether unselected star images should display or not. If it's set to false, the value of "imageForUnselectedStars" will be useless (suggesting to set image to nil).
+
+#### XDXRatingBarManager
+
+XDXRatingBarManager is a class containing a singleton instance for configuring all XDXRatingBar instances in the project. Let's have an example:
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool 
+{
+    configXDXRatingBarGlobally()
+    return true
+}
+
+func configXDXRatingBarGlobally()
+{
+    XDXRatingBarManager.shared.minRating = 1
+    XDXRatingBarManager.shared.maxRating = 5
+    XDXRatingBarManager.shared.numberOfStars = 5
+    XDXRatingBarManager.shared.animated = true
+    XDXRatingBarManager.shared.animationTimeInterval = 0.2
+    XDXRatingBarManager.shared.isDecimalRating = false
+    XDXRatingBarManager.shared.isIndicator = false
+    XDXRatingBarManager.shared.starWidthInsetRatio = 0.05
+}
+```
+
+Simply copy this piece of code and do a little modification based on what you need in the project's AppDelegate file. So you don't have to override either in coding files or in xib / storyboard files everytime when XDXRatingBar is created. All variables in XDXRatingBarManager are optional, so you are not required to do this in AppDelegate.
 
 <br/>
 

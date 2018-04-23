@@ -65,7 +65,7 @@ import UIKit
     
     private func buildView()
     {
-        if isDrawn { return }
+        guard isDrawn == false else { return } 
         isDrawn = true
         
         if isDisplayingUnselectedStars { backgroundRatingView = createRatingView(image: imageForUnselectedStars) }
@@ -109,7 +109,7 @@ import UIKit
     
     @objc private func tapRatingView(sender: UITapGestureRecognizer)
     {
-        if isIndicator { return }
+        guard isIndicator == false else { return }
         
         let tapPoint: CGPoint = sender.location(in: self)
         let offset: CGFloat = tapPoint.x
