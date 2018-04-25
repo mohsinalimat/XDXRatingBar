@@ -1,6 +1,6 @@
 # XDXRatingBar
 
-![logo](https://raw.githubusercontent.com/6xieapplexia6/XDXResources/XDXRatingBar_intro.png)
+![logo](https://raw.githubusercontent.com/6xieapplexia6/XDXResources/master/XDXRatingBar_intro.png)
 <br/><br/>
 ![Platform](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat)
 ![Languages](https://img.shields.io/badge/language-swift%20|%20objc-FF69B4.svg?style=plastic)
