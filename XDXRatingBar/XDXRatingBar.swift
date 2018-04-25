@@ -10,10 +10,12 @@ import UIKit
 
 @objc public protocol XDXRatingBarDelegate: NSObjectProtocol
 {
-    func ratingDidChange(_ ratingBar: XDXRatingBar, rating: CGFloat)
+    @objc optional func ratingWillChange(_ ratingBar: XDXRatingBar, oldRating: CGFloat, newRating: CGFloat)
+    
+    @objc optional func ratingDidChange(_ ratingBar: XDXRatingBar, oldRating: CGFloat, newRating: CGFloat)
 }
 
-@IBDesignable open class XDXRatingBar: UIView
+@IBDesignable public class XDXRatingBar: UIView
 {
     static let imageOfSelectedStars = UIImage(named: "Selected Star")!
     static let imageOfUnselectedStars = UIImage(named: "Unselected Star")!
@@ -24,34 +26,37 @@ import UIKit
     
     @IBOutlet public weak var delegate: XDXRatingBarDelegate?
     
-    @IBInspectable open var minRating: CGFloat                  = XDXRatingBarManager.shared.minRating                   ?? 1
-    @IBInspectable open var maxRating: CGFloat                  = XDXRatingBarManager.shared.maxRating                   ?? 5
-    @IBInspectable open var numberOfStars: Int                  = XDXRatingBarManager.shared.numberOfStars               ?? 5
-    @IBInspectable open var animated: Bool                      = XDXRatingBarManager.shared.animated                    ?? true
-    @IBInspectable open var animationTimeInterval: TimeInterval = XDXRatingBarManager.shared.animationTimeInterval       ?? 0.2
-    @IBInspectable open var isDecimalRating: Bool               = XDXRatingBarManager.shared.isDecimalRating             ?? false
-    @IBInspectable open var isIndicator: Bool                   = XDXRatingBarManager.shared.isIndicator                 ?? false
-    @IBInspectable open var starWidthInsetRatio: CGFloat        = XDXRatingBarManager.shared.starWidthInsetRatio         ?? 0.05
-    @IBInspectable open var imageForSelectedStars: UIImage      = XDXRatingBarManager.shared.imageForSelectedStars       ?? imageOfSelectedStars
-    @IBInspectable open var imageForUnselectedStars: UIImage    = XDXRatingBarManager.shared.imageForUnselectedStars     ?? imageOfUnselectedStars
-    @IBInspectable open var isDisplayingUnselectedStars: Bool   = XDXRatingBarManager.shared.isDisplayingUnselectedStars ?? true
+    @IBInspectable public var minRating: CGFloat                  = XDXRatingBarManager.shared.minRating                   ?? 1
+    @IBInspectable public var maxRating: CGFloat                  = XDXRatingBarManager.shared.maxRating                   ?? 5
+    @IBInspectable public var numberOfStars: Int                  = XDXRatingBarManager.shared.numberOfStars               ?? 5
+    @IBInspectable public var animated: Bool                      = XDXRatingBarManager.shared.animated                    ?? true
+    @IBInspectable public var animationTimeInterval: TimeInterval = XDXRatingBarManager.shared.animationTimeInterval       ?? 0.2
+    @IBInspectable public var isDecimalRating: Bool               = XDXRatingBarManager.shared.isDecimalRating             ?? false
+    @IBInspectable public var isIndicator: Bool                   = XDXRatingBarManager.shared.isIndicator                 ?? false
+    @IBInspectable public var starWidthInsetRatio: CGFloat        = XDXRatingBarManager.shared.starWidthInsetRatio         ?? 0.05
+    @IBInspectable public var imageForSelectedStars: UIImage      = XDXRatingBarManager.shared.imageForSelectedStars       ?? imageOfSelectedStars
+    @IBInspectable public var imageForUnselectedStars: UIImage    = XDXRatingBarManager.shared.imageForUnselectedStars     ?? imageOfUnselectedStars
+    @IBInspectable public var isDisplayingUnselectedStars: Bool   = XDXRatingBarManager.shared.isDisplayingUnselectedStars ?? true
     
-    @IBInspectable open var rating: CGFloat = 1 {
+    @IBInspectable public var rating: CGFloat = 1 {
+        willSet {
+            delegate?.ratingWillChange?(self, oldRating: rating, newRating: newValue)
+        }
         didSet {
             if      minRating > rating { rating = minRating }
             else if maxRating < rating { rating = maxRating }
-            delegate?.ratingDidChange(self, rating: rating)
+            delegate?.ratingDidChange?(self, oldRating: oldValue, newRating: rating)
             setNeedsLayout()
         }
     }
     
-    override open func prepareForInterfaceBuilder()
+    override public func prepareForInterfaceBuilder()
     {
         super.prepareForInterfaceBuilder()
         layoutSubviews()
     }
     
-    override open func layoutSubviews()
+    override public func layoutSubviews()
     {
         super.layoutSubviews()
         
@@ -59,7 +64,7 @@ import UIKit
         let timeInterval: TimeInterval = animated ? animationTimeInterval : 0
         
         UIView.animate(withDuration: timeInterval) {
-            self.animationRatingChange()
+            self.animatingRatingChange()
         }
     }
     
@@ -70,7 +75,7 @@ import UIKit
         
         if isDisplayingUnselectedStars { backgroundRatingView = createRatingView(image: imageForUnselectedStars) }
         foregroundRatingView = createRatingView(image: imageForSelectedStars)
-        animationRatingChange()
+        animatingRatingChange()
         addSubview(backgroundRatingView)
         addSubview(foregroundRatingView)
         
@@ -79,7 +84,7 @@ import UIKit
         addGestureRecognizer(tapGesture)
     }
     
-    private func animationRatingChange()
+    private func animatingRatingChange()
     {
         let currentRating: CGFloat = rating / maxRating
         foregroundRatingView.frame = CGRect(x: 0,
@@ -119,19 +124,19 @@ import UIKit
     }
 }
 
-open class XDXRatingBarManager
+public class XDXRatingBarManager
 {
-    open static let shared = XDXRatingBarManager()
+    public static let shared = XDXRatingBarManager()
     
-    open var minRating: CGFloat?
-    open var maxRating: CGFloat?
-    open var numberOfStars: Int?
-    open var animated: Bool?
-    open var animationTimeInterval: TimeInterval?
-    open var isDecimalRating: Bool?
-    open var isIndicator: Bool?
-    open var starWidthInsetRatio: CGFloat?
-    open var imageForSelectedStars: UIImage?
-    open var imageForUnselectedStars: UIImage?
-    open var isDisplayingUnselectedStars: Bool?
+    public var minRating: CGFloat?
+    public var maxRating: CGFloat?
+    public var numberOfStars: Int?
+    public var animated: Bool?
+    public var animationTimeInterval: TimeInterval?
+    public var isDecimalRating: Bool?
+    public var isIndicator: Bool?
+    public var starWidthInsetRatio: CGFloat?
+    public var imageForSelectedStars: UIImage?
+    public var imageForUnselectedStars: UIImage?
+    public var isDisplayingUnselectedStars: Bool?
 }
