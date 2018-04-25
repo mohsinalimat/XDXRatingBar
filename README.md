@@ -1,7 +1,8 @@
 # XDXRatingBar
 
-![XDXRatingBar](https://github.com/6xieapplexia6/XDXResources/XDXRatingBar_intro.png)
-<br/>
+![logo](https://raw.githubusercontent.com/6xieapplexia6/XDXResources/XDXRatingBar_intro.png)
+<br/><br/>
+![Platform](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat)
 ![Languages](https://img.shields.io/badge/language-swift%20|%20objc-FF69B4.svg?style=plastic)
 
 ## Table of contents - 目录
@@ -39,21 +40,28 @@ Cocoapods installation will be available in the future.
 
 #### XDXRatingBar - Variables
 
-1. The variable "maxRating" should be the multiple of the variable "numberOfStars". In most cases, I'll recommend to set them as the same of each other. | 变量 maxRating (最高评分) 必须是变量 numberOfStars(星星数量) 的倍数。建议设置为相等的值。
+1. The variable "maxRating" should be the multiple of the variable "numberOfStars". In most cases, I'll recommend to set them as the same of each other.
+变量 maxRating (最高评分) 必须是变量 numberOfStars(星星数量) 的倍数。建议设置为相等的值。
 
-2. The variable "animated" indicates whether XDXRatingBar instance should perform animation when the rating is changed. The value of the variable "animationTimeInterval" will be useless if "animated" is set to false. | 变量 animated (显示动画) 声明 XDXRatingBar 实例是否需要在评分变化的时候显示动画。
+2. The variable "animated" indicates whether XDXRatingBar instance should perform animation when the rating is changed. The value of the variable "animationTimeInterval" will be useless if "animated" is set to false.
+变量 animated (显示动画) 声明 XDXRatingBar 实例是否需要在评分变化的时候显示动画。
 
-3. The variable "isDecimalRating" indicates whether the rating of XDXRatingBar instance is a decimal or an integer. | 变量 isDecimalRating (小数型评分) 声明 XDXRatingBar 评分是小数还是整数。
+3. The variable "isDecimalRating" indicates whether the rating of XDXRatingBar instance is a decimal or an integer.
+变量 isDecimalRating (小数型评分) 声明 XDXRatingBar 评分是小数还是整数。
 
-4. The variable "isIndicator" determines whether users can change rating by tapping XDXRatingBar. However, the rating can still be changed programmatically even if it's true. | 变量 isIndicator (指示器) 意思为 iOS 用户是否不可以通过点击 XDXRatingBar 来修改评分。即使该变量值为 true，评分仍可通过代码实现来修改。
+4. The variable "isIndicator" determines whether users can change rating by tapping XDXRatingBar. However, the rating can still be changed programmatically even if it's true.
+变量 isIndicator (指示器) 意思为 iOS 用户是否不可以通过点击 XDXRatingBar 来修改评分。即使该变量值为 true，评分仍可通过代码实现来修改。
 
-5. The variable "starWidthInsetRatio" sets the gap between star images. The value should be set to 0 ~ 0.5. | 变量 starWidthInsetRatio (星星之间宽空隙指数) 可用来设置星星图片间距。变量的值需在 0 ~ 0.5 之间。
+5. The variable "starWidthInsetRatio" sets the gap between star images. The value should be set to 0 ~ 0.5.
+变量 starWidthInsetRatio (星星之间宽空隙指数) 可用来设置星星图片间距。变量的值需在 0 ~ 0.5 之间。
 
-6. The variable "isDisplayingUnselectedStars" indicates whether unselected star images should display or not. If it's set to false, the value of "imageForUnselectedStars" will be useless (suggesting to set image to nil). | 变量 isDisplayingUnselectedStars (显示未选中星星) 声明未选中的星星是否需要显示。如果值为 false 的话，那么 imageForUnselectedStars (未选中星星的图片) 就不会起作用 (建议在此将其设置为 nil)。
+6. The variable "isDisplayingUnselectedStars" indicates whether unselected star images should display or not. If it's set to false, the value of "imageForUnselectedStars" will be useless (suggesting to set image to nil).
+变量 isDisplayingUnselectedStars (显示未选中星星) 声明未选中的星星是否需要显示。如果值为 false 的话，那么 imageForUnselectedStars (未选中星星的图片) 就不会起作用 (建议在此将其设置为 nil)。
 
 #### XDXRatingBarManager
 
-XDXRatingBarManager is a class containing a singleton instance for configuring all XDXRatingBar instances in the project. Let's have an example: | 类 XDXRatingBarManager 包含了一个单例来配置所有在项目中的 XDXRatingBar 实例。示例如下：
+XDXRatingBarManager is a class containing a singleton instance for configuring all XDXRatingBar instances in the project. Let's have an example:
+类 XDXRatingBarManager 包含了一个单例来配置所有在项目中的 XDXRatingBar 实例。示例如下：
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool 
@@ -75,17 +83,20 @@ func configXDXRatingBarGlobally()
 }
 ```
 
-Simply copy this piece of code and do a little modification based on what you need in the project's AppDelegate file. So you don't have to override either in coding files or in xib / storyboard files everytime when XDXRatingBar is created. All variables in XDXRatingBarManager are optional, so you are not required to do this in AppDelegate. | 复制以上代码到 iOS 项目的 AppDelegate 文件中，并根据需要作出修改。就不需要每次都在代码、xib 或 storyboard 文件重新配置 XDXRatingBar 了。该类内都是 optional 变量，所以以上代码并不需要出现在 iOS 项目中。
+Simply copy this piece of code and do a little modification based on what you need in the project's AppDelegate file. So you don't have to override either in coding files or in xib / storyboard files everytime when XDXRatingBar is created. All variables in XDXRatingBarManager are optional, so you are not required to do this in AppDelegate.
+复制以上代码到 iOS 项目的 AppDelegate 文件中，并根据需要作出修改。就不需要每次都在代码、xib 或 storyboard 文件重新配置 XDXRatingBar 了。该类内都是 optional 变量，所以以上代码并不需要出现在 iOS 项目中。
 
 #### XDXRatingBarDelegate
 
-If you need to do something when the rating of XDXRatingBar is changed. You can simply confirm the protocol in view-controller or view-cell classes like: | 如果需要在评分有变化的时候运行一些代码，可以在 view-controller 或 view-cell 的类中确定 protocol：
+If you need to do something when the rating of XDXRatingBar is changed. You can simply confirm the protocol in view-controller or view-cell classes like:
+如果需要在评分有变化的时候运行一些代码，可以在 view-controller 或 view-cell 的类中确定 protocol：
 
 ```swift
 class ViewController: UIViewController, XDXRatingBarDelegate
 ```
 
-You can either set delegate programmatically or drag in xib / storyboard files. | delegate 可以像如下代码实现，也可以在 xib / storyboard 文件中配置。
+You can either set delegate programmatically or drag in xib / storyboard files.
+delegate 可以像如下代码实现，也可以在 xib / storyboard 文件中配置。
 
 First way: 
 ```swift
@@ -106,7 +117,8 @@ override func viewDidLoad()
 }
 ```
 
-Then do what you want to do in the method "ratingWillChange" or "ratingDidChange". You are not required to implement this method (since the method in protocol is optional) even when you confirm protocol in the classes. | 最后添加代码在 ratingWillChange 或 ratingDidChange 方法中。这两个方法不是必需的，即使 protocol 被类确认。
+Then do what you want to do in the method "ratingWillChange" or "ratingDidChange". You are not required to implement this method (since the method in protocol is optional) even when you confirm protocol in the classes.
+最后添加代码在 ratingWillChange 或 ratingDidChange 方法中。这两个方法不是必需的，即使 protocol 被类确认。
 
 ```swift
 func ratingWillChange(_ ratingBar: XDXRatingBar, oldRating: CGFloat, newRating: CGFloat)
@@ -131,4 +143,5 @@ func ratingDidChange(_ ratingBar: XDXRatingBar, oldRating: CGFloat, newRating: C
 <br/>
 
 ### License - 使用许可
-XDXRatingBar is available under the MIT license. Please see the LICENSE file for more info. | XDXRatingBar 使用 MIT license，请查阅仓库下的 LICENSE 文件获取更多信息。
+XDXRatingBar is available under the MIT license. Please see the LICENSE file for more info.
+XDXRatingBar 使用 MIT license，请查阅仓库下的 LICENSE 文件获取更多信息。
