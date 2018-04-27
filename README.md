@@ -4,6 +4,7 @@
 <br/><br/>
 ![Platform](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=plastic)
 ![Languages](https://img.shields.io/badge/language-swift%20|%20objc-FF69B4.svg?style=plastic)
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=plastic)
 
 ## Table of contents - 目录
 * [Introduction](#introduction)
